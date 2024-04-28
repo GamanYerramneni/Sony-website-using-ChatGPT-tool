@@ -4,259 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sony Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
     <style>
-        /* Resetting default margin and padding */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* CSS Styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            margin: 0;
+            padding: 0;
         }
 
         header {
             background-color: #333;
             color: #fff;
-            padding: 40px 0;
-            text-align: center;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 80px;
         }
 
         nav ul {
             list-style-type: none;
-            text-align: center;
+            padding: 0;
+            margin: 0;
+            display: flex;
         }
 
         nav ul li {
-            display: inline-block;
-            margin-right: 20px;
+            margin-left: 20px;
         }
 
         nav ul li a {
             color: #fff;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 15px 20px;
             border-radius: 5px;
             transition: background-color 0.3s;
-            background-color: #555;
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
         }
 
         nav ul li a:hover {
-            background-color: #777;
-        }
-
-        .slider-container {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .slider {
-            display: flex;
-            width: 100%;
-            transition: transform 0.5s ease;
-        }
-
-        .product-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .product {
-            margin: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            width: 300px;
-        }
-
-        .product:hover {
-            transform: translateY(-5px);
-        }
-
-        .product img {
-            width: 100%;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        .product-info {
-            flex: 1;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .footer-info {
-            margin-bottom: 20px;
-        }
-
-        .contact-form input[type="text"], 
-        .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            background-color: #45a049;
         }
 
         .search-container {
-            text-align: center;
-            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
         }
 
         .search-container input[type="text"] {
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
-            width: 300px;
+            margin-right: 10px;
         }
 
         .search-container button {
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            background-color: #333;
+            padding: 10px 15px;
+            background-color: #555;
             color: #fff;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
 
-        .search-container button:hover {
-            background-color: #555;
+        .slider-container {
+            overflow: hidden;
+            position: relative;
         }
 
-        .footer-social-icons {
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider img {
+            width: 100%;
+            height: auto;
+        }
+
+        .main-body {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .product {
+            text-align: center;
+            margin-bottom: 40px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .social-icons {
             margin-top: 20px;
         }
 
-        .footer-social-icons a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: #555;
+        .social-icons a {
             color: #fff;
-            font-size: 24px;
-            text-align: center;
-            line-height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-            transition: background-color 0.3s;
+            margin: 0 10px;
+            font-size: 20px;
+            transition: color 0.3s;
         }
 
-        .footer-social-icons a:hover {
-            background-color: #777;
-        }
-
-        .switch-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider-switch {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider-switch:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider-switch {
-            background-color: #2196F3;
-        }
-
-        input:focus + .slider-switch {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked + .slider-switch:before {
-            transform: translateX(26px);
-        }
-
-        .slider-switch.round {
-            border-radius: 34px;
-        }
-
-        .slider-switch.round:before {
-            border-radius: 50%;
-        }
-
-        .dark-mode-text {
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .light-mode-text {
-            color: #333;
-            font-size: 18px;
-            font-weight: bold;
-            margin-left: 10px;
+        .social-icons a:hover {
+            color: #555;
         }
     </style>
-    <script>
-        // JavaScript code for dynamic image slider
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slider img');
-        const totalSlides = slides.length;
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlider();
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateSlider();
-        }
-
-        function updateSlider() {
-            const offset = -currentSlide * 100 + '%';
-            document.querySelector('.slider').style.transform = `translateX(${offset})`;
-        }
-    </script>
 </head>
 <body>
     <header>
-        <h1>Sony Products</h1>
+        <div class="logo">
+            <img src="sony_logo.png" alt="Sony Logo">
+        </div>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
@@ -265,89 +152,100 @@
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-        <div class="switch-container">
-            <span class="dark-mode-text">Dark Mode</span>
-            <label class="switch">
-                <input type="checkbox" id="darkModeSwitch">
-                <span class="slider-switch"></span>
-            </label>
-            <span class="light-mode-text">Light Mode</span>
+        <div class="search-container">
+            <input type="text" placeholder="Search...">
+            <button type="button">Search</button>
         </div>
     </header>
 
-    <main>
-        <div class="search-container">
-            <input type="text" placeholder="Search products...">
-            <button>Search</button>
+    <div class="slider-container">
+        <div class="slider">
+            <img src="product1.jpg" alt="Product 1">
+            <img src="product2.jpg" alt="Product 2">
+            <img src="product3.jpg" alt="Product 3">
         </div>
-        <div class="product-container">
-            <section class="product">
-                <img src="product1.jpg" alt="Product 1">
-                <div class="product-info">
-                    <h2>Product 1</h2>
-                    <p>Description of Product 1.</p>
-                    <p>Key features:</p>
-                    <ul>
-                        <li>Feature 1</li>
-                        <li>Feature 2</li>
-                        <li>Feature 3</li>
-                    </ul>
-                    <p>Specifications:</p>
-                    <ul>
-                        <li>Specification 1</li>
-                        <li>Specification 2</li>
-                        <li>Specification 3</li>
-                    </ul>
-                </div>
-            </section>
+    </div>
 
-            <!-- More product sections can be added here -->
-
-        </div>
-    </main>
-
-    <footer>
-        <div class="footer-info">
-            <p>&copy; 2024 Sony Corporation. All rights reserved.</p>
-            <div class="footer-social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <div class="contact-form">
-                <input type="text" placeholder="Name">
-                <input type="text" placeholder="Email">
-                <textarea placeholder="Message"></textarea>
-                <button>Submit</button>
-            </div>
-        </div>
-        <div class="footer-links">
+    <div class="main-body">
+        <div class="product">
+            <img src="product1.jpg" alt="Product 1">
+            <h2>Product 1</h2>
+            <p>Description of product 1.</p>
             <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li>Feature 1</li>
+                <li>Feature 2</li>
+                <li>Feature 3</li>
             </ul>
         </div>
+        <div class="product">
+            <img src="product2.jpg" alt="Product 2">
+            <h2>Product 2</h2>
+            <p>Description of product 2.</p>
+            <ul>
+                <li>Feature 1</li>
+                <li>Feature 2</li>
+                <li>Feature 3</li>
+            </ul>
+        </div>
+        <div class="product">
+            <img src="product3.jpg" alt="Product 3">
+            <h2>Product 3</h2>
+            <p>Description of product 3.</p>
+            <ul>
+                <li>Feature 1</li>
+                <li>Feature 2</li>
+                <li>Feature 3</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Sony. All rights reserved.
+        </div>
+        <div class="contact-form">
+            <form>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <textarea placeholder="Message"></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
     </footer>
-    
+
     <script>
-        // Initialize slider
-        updateSlider();
+        // JavaScript Code
+        const slider = document.querySelector('.slider');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-        // Automatic slide change every 5 seconds
-        setInterval(nextSlide, 5000);
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
 
-        // Dark Mode Switch
-        const darkModeSwitch = document.getElementById('darkModeSwitch');
-        darkModeSwitch.addEventListener('change', () => {
-            if (darkModeSwitch.checked) {
-                document.body.style.backgroundColor = '#222';
-                document.body.style.color = '#fff';
-            } else {
-                document.body.style.backgroundColor = '#f4f4f4';
-                document.body.style.color = '#333';
-            }
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
         });
     </script>
 </body>
